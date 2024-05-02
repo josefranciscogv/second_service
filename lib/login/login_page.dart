@@ -11,16 +11,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/login_background.png'),
-            fit: BoxFit.cover,
-          ),
-        ),
+        decoration: BoxDecoration(),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: ListView(
@@ -33,6 +31,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 50), // Add space before the icon
 
               TextField(
+                controller: _emailController, // Assign controller to TextField
                 decoration: InputDecoration(
                   labelText: 'Email',
                   border: OutlineInputBorder(),
@@ -40,9 +39,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 10), // Add spacing between fields
               TextField(
+                controller:
+                    _passwordController, // Assign controller to TextField
                 obscureText: true, // Set obscureText to true for password field
                 decoration: InputDecoration(
-                  labelText: 'Password',
+                  labelText: 'Contraseña',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -50,13 +51,19 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   // Handle forgot password functionality
                 },
-                child: Text('Forgot password?'),
+                child: Text('¿Olvidaste tu contraseña?'),
               ),
               MaterialButton(
-                child: Text("Sign In"),
+                child: Text("Iniciar Sesión"),
                 color: Colors.blue, // Assuming blue color for the button
                 onPressed: () {
-                  // Handle sign in logic
+                  final email =
+                      _emailController.text; // Get text from email controller
+                  final password = _passwordController
+                      .text; // Get text from password controller
+
+                  BlocProvider.of<AuthBloc>(context)
+                      .add(EmailAuthEvent(email: email, password: password));
                 },
               ),
               SignInButton(
@@ -64,6 +71,14 @@ class _LoginPageState extends State<LoginPage> {
                 text: "Iniciar con Google",
                 onPressed: () async {
                   BlocProvider.of<AuthBloc>(context).add(GoogleAuthEvent());
+                },
+              ),
+              SizedBox(height: 10), // Add spacing between fields
+              MaterialButton(
+                child: Text("Registrarme"),
+                color: Colors.grey, // Assuming blue color for the button
+                onPressed: () {
+                  // Handle sign in logic
                 },
               ),
             ],

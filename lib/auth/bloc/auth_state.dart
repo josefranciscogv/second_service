@@ -15,6 +15,13 @@ class UnAuthState extends AuthState {}
 
 class SignOutSuccessState extends AuthState {}
 
-class AuthErrorState extends AuthState {}
+class AuthErrorState extends AuthState {
+  final String? message;
+
+  const AuthErrorState({this.message});
+
+  @override
+  List<Object> get props => [message!]; // Make message non-nullable here
+}
 
 class AuthAwaitingState extends AuthState {}

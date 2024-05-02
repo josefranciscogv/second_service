@@ -5,10 +5,9 @@ class UserAuthRepository {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ["email"]);
 
-  // true -> go home page
-  // false -> go login page
+  // True -> go home page
+  // False -> go login page
   bool isAlreadyAuthenticated() {
-    // check if the user is authenticated
     return _auth.currentUser != null;
   }
 
@@ -23,21 +22,38 @@ class UserAuthRepository {
   }
 
   Future<void> signInWithGoogle() async {
-    // set up Google sign in
+    // Set up Google sign in
     final googleUser = await _googleSignIn.signIn();
-    final googleAuth = await googleUser!.authentication;
+    if (googleUser == null) return; // User might cancel sign in flow
+
+    final googleAuth = await googleUser.authentication;
 
     print(">> User email: ${googleUser.email}");
-    print(">> User email: ${googleUser.displayName}");
-    print(">> User email: ${googleUser.photoUrl}");
+    print(">> User display name: ${googleUser.displayName}");
+    print(">> User photo url: ${googleUser.photoUrl}");
 
-    // get credenciales de usuario autenticado con Google
+    // Get credentials of authenticated user with Google
     final AuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
       idToken: googleAuth.idToken,
     );
 
-    // firebase sign in con credenciales de Google
+    // Firebase sign in with Google credentials
     await _auth.signInWithCredential(credential);
+  }
+
+  // Added method for sign in with email and password
+  Future<void> signInWithEmailAndPassword(String email, String password) async {
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      } else {
+        print(e.code); // Print other errors
+      }
+    }
   }
 }
