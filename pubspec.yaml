@@ -43,4 +43,9 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/app_icon.png
+    - assets/icons/tennis-court-1.png
+    - assets/icons/tennis-court-2.png
+    - assets/icons/tennis-court-3.png
+    - assets/icons/tennis-court-4.png
+    
 
