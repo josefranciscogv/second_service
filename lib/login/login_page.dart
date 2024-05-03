@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:second_service/auth/bloc/auth_bloc.dart'; // For Google Sign In
+import 'package:second_service/forms/user_forms/new_user_form.dart'; // Assuming NewUserForm location
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -78,7 +79,11 @@ class _LoginPageState extends State<LoginPage> {
                 child: Text("Registrarme"),
                 color: Colors.grey, // Assuming blue color for the button
                 onPressed: () {
-                  // Handle sign in logic
+                  // Navigate to NewUserForm
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NewUserForm()),
+                  );
                 },
               ),
             ],
