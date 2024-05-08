@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:second_service/auth/bloc/auth_bloc.dart';
+import 'package:second_service/players/players_page.dart';
 import 'package:second_service/profile/profile_page.dart';
 import '../content/tennis_field/tennis_field.dart';
 import '../content/field_schedule/field_schedule.dart'; // Assuming field_schedule.dart is in the same directory or adjust the path
@@ -14,12 +13,6 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Second Service'),
         actions: [
-          // Add the sign out button to the actions list (optional)
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () =>
-                BlocProvider.of<AuthBloc>(context).add(SignOutEvent()),
-          ),
           PopupMenuButton<String>(
             onSelected: (value) => navigateToPage(context, value),
             itemBuilder: (context) => [
@@ -128,6 +121,11 @@ class HomePage extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => ProfilePage()),
+      );
+    } else if (page == 'players') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PlayersPage()),
       );
     } else {
       // Implement navigation logic for other pages (tournaments, players)
