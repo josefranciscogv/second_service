@@ -21,43 +21,59 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: GridView.count(
-        crossAxisCount: 2, // Defines 2 columns in the grid
+      body: Column(
         children: [
-          GestureDetector(
-            onTap: () => navigateToFieldSchedule(
-                context, 'assets/icons/tennis-court-1.png', 'Cancha 1'),
-            child: TennisField(
-              image: 'assets/icons/tennis-court-1.png',
-              text: 'Cancha 1',
-              onTap: () {},
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 2, // Defines 2 columns in the grid
+              children: [
+                GestureDetector(
+                  onTap: () => navigateToFieldSchedule(
+                      context, 'assets/icons/tennis-court-1.png', 'Cancha 1'),
+                  child: TennisField(
+                    image: 'assets/icons/tennis-court-1.png',
+                    text: 'Cancha 1',
+                    onTap: () {},
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => navigateToFieldSchedule(
+                      context, 'assets/icons/tennis-court-2.png', 'Cancha 2'),
+                  child: TennisField(
+                    image: 'assets/icons/tennis-court-2.png',
+                    text: 'Cancha 2',
+                    onTap: () {},
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => navigateToFieldSchedule(
+                      context, 'assets/icons/tennis-court-3.png', 'Cancha 3'),
+                  child: TennisField(
+                    image: 'assets/icons/tennis-court-3.png',
+                    text: 'Cancha 3',
+                    onTap: () {},
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => navigateToFieldSchedule(
+                      context, 'assets/icons/tennis-court-4.png', 'Cancha 4'),
+                  child: TennisField(
+                    image: 'assets/icons/tennis-court-4.png',
+                    text: 'Cancha 4',
+                    onTap: () {},
+                  ),
+                ),
+              ],
             ),
           ),
-          GestureDetector(
-            onTap: () => navigateToFieldSchedule(
-                context, 'assets/icons/tennis-court-2.png', 'Cancha 2'),
-            child: TennisField(
-              image: 'assets/icons/tennis-court-2.png',
-              text: 'Cancha 2',
-              onTap: () {},
-            ),
-          ),
-          GestureDetector(
-            onTap: () => navigateToFieldSchedule(
-                context, 'assets/icons/tennis-court-3.png', 'Cancha 3'),
-            child: TennisField(
-              image: 'assets/icons/tennis-court-3.png',
-              text: 'Cancha 3',
-              onTap: () {},
-            ),
-          ),
-          GestureDetector(
-            onTap: () => navigateToFieldSchedule(
-                context, 'assets/icons/tennis-court-4.png', 'Cancha 4'),
-            child: TennisField(
-              image: 'assets/icons/tennis-court-4.png',
-              text: 'Cancha 4',
-              onTap: () {},
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Text(
+              'Selecciona una cancha',
+              style: TextStyle(
+                fontSize: 16.0,
+                color: Colors.black, // Adjust color as needed
+              ),
             ),
           ),
         ],
@@ -74,7 +90,8 @@ class HomePage extends StatelessWidget {
           image: image, // Pass image path
           exchangeName: courtName, // Pass court name
           // Additional fields for FieldSchedule (optional)
-          date: '2024-05-04', fieldNumber: 1,
+          date: '2024-05-04',
+          fieldNumber: int.parse(courtName[courtName.length - 1]),
         ),
       ),
     );
