@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:second_service/auth/bloc/auth_bloc.dart';
 import 'package:second_service/content/field_schedule/field_schedule_provider.dart';
 import 'package:second_service/firebase_options.dart';
+import 'package:second_service/forms/reservation_match_forms/reservation_provider.dart';
 import 'package:second_service/home/home_page.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -20,6 +21,7 @@ Future<void> main() async {
         create: (context) => AuthBloc()..add(VerifyAuthEvent()),
       ),
       ChangeNotifierProvider(create: (context) => FieldScheduleProvider()),
+      ChangeNotifierProvider(create: (context) => ReservationProvider()),
     ],
     child: MyApp(),
   ));

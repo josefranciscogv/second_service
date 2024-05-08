@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // Import for date formatting
 import 'package:provider/provider.dart'; // Import for Provider
 import 'package:second_service/content/field_schedule/field_schedule_provider.dart';
+import 'package:second_service/forms/reservation_match_forms/new_reservation_form.dart';
 
 // Assuming your reservation provider is named FieldScheduleProvider
 
@@ -101,7 +102,15 @@ class _FieldScheduleState extends State<FieldSchedule> {
             right: 15.0,
             child: FloatingActionButton(
               onPressed: () {
-                // Handle "Add" button press (implementation needed)
+                // Navigate to NewReservationForm
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewReservationForm(
+                      fieldNumber: widget.fieldNumber, // Pass field number
+                    ),
+                  ),
+                );
               },
               child: Icon(Icons.add),
               heroTag: "addButton",

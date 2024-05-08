@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  intl: ^0.18.1  # Adjust version if needed
   cupertino_icons: ^1.0.6
   flutter_expandable_fab: ^2.0.0
   image_picker: ^1.1.0
