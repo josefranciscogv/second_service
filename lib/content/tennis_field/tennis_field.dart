@@ -4,7 +4,10 @@ class TennisField extends StatelessWidget {
   final String image;
   final String text;
 
-  const TennisField({required this.image, required this.text});
+  const TennisField(
+      {required this.image,
+      required this.text,
+      required void Function() onTap});
 
   @override
   Widget build(BuildContext context) {
