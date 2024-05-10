@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart'; // Import for Firestore
 import 'package:firebase_ui_firestore/firebase_ui_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:second_service/forms/players_forms/new_player_form.dart';
 
 // Assuming you have a Player model or similar to represent player data
 
@@ -33,9 +34,9 @@ class _PlayersPageState extends State<PlayersPage> {
             return Center(child: CircularProgressIndicator());
           }
 
-          final players = snapshot.data!.docs
-              .map((doc) => doc.data())
-              .toList(); // Convert to list
+          // final players = snapshot.data!.docs
+          //     .map((doc) => doc.data())
+          //     .toList(); // Convert to list
 
           return FirestoreListView<Map<String, dynamic>>(
             query: playersQuery,
@@ -69,8 +70,13 @@ class _PlayersPageState extends State<PlayersPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Handle onPressed action (e.g., navigate to a player creation page)
-          print('Add player button pressed');
+          // Navigate to NewReservationForm
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => NewPlayerForm(),
+            ),
+          );
         },
         child: Icon(Icons.add),
       ),
