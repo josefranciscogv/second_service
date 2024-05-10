@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:second_service/players/players_page.dart';
 import 'package:second_service/profile/profile_page.dart';
+import 'package:second_service/tournaments/tournaments_page.dart';
 import '../content/tennis_field/tennis_field.dart';
 import '../content/field_schedule/field_schedule.dart'; // Assuming field_schedule.dart is in the same directory or adjust the path
 
@@ -126,6 +127,11 @@ class HomePage extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => PlayersPage()),
+      );
+    } else if (page == 'tournaments') {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => TournamentsPage()),
       );
     } else {
       // Implement navigation logic for other pages (tournaments, players)
